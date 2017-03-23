@@ -30,9 +30,9 @@
           <%if current_user.id == review.reviewer_id%>
             <div>
               <%= link_to 'Remove This Review', [review.user, review],
-                           method: :delete,
-                           data: { confirm: 'Are you sure?' },
-                           class: "remove-btn" %>
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                class: "remove-btn" %>
             </div>
           <%end%>
         </div>

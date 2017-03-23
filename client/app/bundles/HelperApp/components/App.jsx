@@ -14,10 +14,8 @@ export default class App extends React.Component {
     };
 
     this.createEvent = this.createEvent.bind(this);
-    // this.toggleAllEvents = this.toggleAllEvents.bind(this);
 
     this.cable = ActionCable.createConsumer();
-        console.log(this.cable);
         this.setupSubscription();
   }
   componentDidMount() {
@@ -29,7 +27,7 @@ export default class App extends React.Component {
       url: "/events",
       dataType: "json"
     }).done((data) => {
-      this.setState({ events: data })
+      this.setState({ events: data });
     });
   }
 
@@ -51,12 +49,10 @@ export default class App extends React.Component {
       type: 'POST',
       data: {event: eventData},
       success: (response) => {
-        console.log('the response is ', response);
         const roomInfo = {
           title: response.title,
           event_id: response.id
         };
-        console.log('here is the roomInfo', roomInfo);
         this.registerRoom(roomInfo);
       },
       error: (response)=>{
@@ -84,11 +80,9 @@ export default class App extends React.Component {
   setupSubscription(){
     this.event = this.cable.subscriptions.create("EventChannel", "UserChannel", {
       connected: () => {
-        console.log("connected??");
       },
 
       received: (data) => {
-        console.log('received', data);
         this.getEvents();
       },
 

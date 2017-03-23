@@ -10,22 +10,16 @@
 
   App.cable = ActionCable.createConsumer();
   App.event = App.cable.subscriptions.create("EventChannel", {
-        // event_id: this.state.event.id,
 
-        connected: () => {
-          console.log("connected??");
-          // setTimeout(() => this.perform('follow',
-          //                               { message_id: this.message_id}), 1000 );
-        },
+    connected: () => {
+      console.log("connected??");
+    },
 
-        received: (data) => {
-          if (App.map) {
-            console.log('received', data);
-            var event = JSON.parse(data.message);
-            console.log('received', event);
-            addEventToMap(App.map, event);
-          }
-        }
-      });
-      console.log('this.event', App.event);
+    received: (data) => {
+      if (App.map) {
+        var event = JSON.parse(data.message);
+        addEventToMap(App.map, event);
+      }
+    }
+  });
 }).call(this);

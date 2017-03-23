@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -25,10 +24,5 @@ class ApplicationController < ActionController::Base
   def set_variables
     @rooms = Room.all
   end
-  # before_filter do
-  #   if request.path != '/' && request.format == :html && !params[:format]
-  #     redirect_to format: :html
-  #   end
-  # end
 
 end

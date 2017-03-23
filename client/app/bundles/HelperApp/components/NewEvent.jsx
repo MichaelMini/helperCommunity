@@ -9,7 +9,6 @@ export default class NewEvent extends React.Component {
   }
 
   handleClick(event) {
-    // event.preventDefault();
     var title = this.refs.title.value;
     var desc = this.refs.description.value;
     var scheduled_at = this.refs.scheduled_at.value;

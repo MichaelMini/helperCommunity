@@ -1,7 +1,3 @@
-/* eslint comma-dangle: ["error",
-  {"functions": "never", "arrays": "only-multiline", "objects":
-"only-multiline"} ] */
-
 const webpack = require('webpack');
 const path = require('path');
 

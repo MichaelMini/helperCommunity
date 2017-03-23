@@ -3,17 +3,14 @@ class ReviewsController < ApplicationController
   def create
     if current_user
       @user = User.find(params[:user_id])
-      # @review = @user.reviews.create(review_params)
-      # redirect_to user_path(@user)
-      @review = @user.reviews.new(review_params) # I need to know how this works???
-      # @review.user_id = current_user.id if current_user
+      @review = @user.reviews.new(review_params)
       @review.user_id = @user.id
       @review.reviewer_id = current_user.id
       if @review.save!
         redirect_to @review.user
       else
         redirect :back
-      end # ???
+      end
     end
   end
 

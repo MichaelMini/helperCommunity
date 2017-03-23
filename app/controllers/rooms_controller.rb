@@ -13,7 +13,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    puts "Room is creating !!!!!!!!!!!!!!!!!!!!!"
     @room = Room.create!(room_params)
     @room.save
   end
