@@ -1,17 +1,24 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @events = Event.includes(:user)
 
     respond_to do |format|
       format.html
-      format.json { render :json => @events }
+      format.json {
+        render :json => @events, :include => :user
+      }
     end
 
   end
 
   def show
     @event = Event.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @event }
+    end
   end
 
   def new
@@ -19,13 +26,15 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts "I AM READY TO BE CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     @event = Event.create(event_params)
 
     @event.user_id = current_user.id if current_user
 
     if @event.save
-      #render json:@event
-      redirect_to @event
+      puts "I GOT CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      render json:@event
+      # redirect_to @event
     else
       render json:{ result: 'failed to save', errors: @event.errors.full_messages }, status: 400
     end
@@ -37,7 +46,7 @@ class EventsController < ApplicationController
     # puts current_user.phone_number
     # kind of like event.users.push(current_user) & save to db
     # render text: "Thank you! You will receive an SMS shortly."
-
+    HelperList.create!(event_id: @event.id, user_id: current_user.id)
     # Instantiate a Twilio client
       client = Twilio::REST::Client.new(TWILIO_CONFIG['sid'], TWILIO_CONFIG['token'])
 
@@ -45,7 +54,7 @@ class EventsController < ApplicationController
       client.account.sms.messages.create(
         from: TWILIO_CONFIG['from'],
         to: current_user.phone_number,
-        body: "#{current_user.name} has accepted your event."
+        body: "#{current_user.name} has accepted your event. Here is #{current_user.name}'s email for you to connect, #{current_user.email}"
       )
     redirect_to :event
   end
@@ -53,15 +62,6 @@ class EventsController < ApplicationController
 
   private
     def event_params
-      params.require(:event).permit(
-        :title,
-        :description,
-        :photo,
-        :scheduled_at,
-        :address,
-        :end_address,
-        :city
-      )
-
+      params.require(:event).permit(:title, :description, :scheduled_at, :address, :end_address)
     end
 end

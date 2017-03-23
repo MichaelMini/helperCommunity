@@ -18,4 +18,6 @@
 //= require map
 //= require bulma
 
+//= require index
 //= require submit
+//= require_tree .

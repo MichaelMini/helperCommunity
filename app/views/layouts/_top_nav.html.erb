@@ -2,7 +2,8 @@
   <div class="container">
     <div class="nav-left">
       <a href="/" class="nav-item">
-        Karma
+        <span class="logo-text">karma</span>
+        <%= image_tag("logo.png") %>
       </a>
     </div>
     <div class="nav-right nav-menu">
@@ -12,6 +13,7 @@
       <% end %>
 
       <% if current_user %>
+        <%= link_to 'Chat', '/rooms', class: "nav-item chat-button" %>
         <a class="button create-event modal-button" data-target="#modal-crev">Create Event</a>
         <span class="nav-item dropdown-item user">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i> <%= current_user.name %>
@@ -60,6 +62,9 @@
   </div>
 </nav>
 
+<!-- The following tag is a invisible tag which enable us to access data in front end /javascripts/channels/rooms.js. Also, RoomIdArray is a helper from /helpers/application_helper.rb -->
+<%= content_tag :div, class: "all_subscribed_rooms_id", data: {id: RoomIdArray(@rooms, current_user)} do %>
+<% end %>
 <!-- Signup modal -->
 <div id="modal-ter" class="modal">
   <div class="modal-background"></div>

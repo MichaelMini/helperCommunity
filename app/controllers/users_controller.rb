@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       session[:user_id] = user.id
+      cookies.signed[:user_id] = user.id
       redirect_to '/'
     else
       redirect_to '/'
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :phone_number)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :photo, :phone_number, :description, :DoB)
   end
 
 end

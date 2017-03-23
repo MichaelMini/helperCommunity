@@ -1,3 +1,145 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+nav.user-nav {
+  border-bottom: solid 1px $brandcolor;
+}
+
+.user-profile {
+  margin: $nav-height 0 0;
+
+  .user-name {
+    margin: 0;
+  }
+
+  .karma-member {
+    font-size: $size-6;
+    font-weight: bold;
+  }
+
+  .user-desc {
+
+  }
+}
+
+.user-events {
+  margin-bottom: 15px;
+
+  h5 {
+    margin: 0 0 5px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  };
+
+  a {
+    color: $brandcolor;
+  }
+
+  .user-events-desc,
+  .user-events-attend {
+    padding-left: 10px;
+  }
+
+  .each-user {
+    display: inline-block;
+    margin-right: 10px;
+
+    img {
+      border-radius: 48px;
+    }
+  }
+
+  .user-events-date {
+    font-size: $size-6;
+  }
+}
+
+.user-section {
+  padding: 20px 0;
+  border-bottom: solid 1px #ccc;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.review-form-container {
+  width: 45%;
+  margin-bottom: 30px;
+}
+
+.reviewer-avatar {
+  img {
+    border-radius: 48px;
+  }
+
+  a {
+    color: $brandcolor;
+    font-size: $size-6;
+  }
+}
+
+.user-rating,
+.rating-none {
+  display: inline-block;
+  width: 125px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.remove-btn {
+  color: #999;
+  font-size: $size-6;
+}
+
+.user-rating {
+  background-color: #ccc;
+  position: relative;
+
+  .rating-none,
+  .rating {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .rating-none {
+    background: url(image-path('star.png')) left top repeat-x;
+    z-index: 100;
+  }
+
+  .rating {
+    background: $brandcolor;
+    height: 24px;
+    text-indent: -9999px;
+    z-index: 3;
+
+    &.rating-0 {
+      width: 0px;
+    }
+
+    &.rating-1 {
+      width: 25px;
+    }
+
+    &.rating-2 {
+      width: 50px;
+    }
+
+    &.rating-3 {
+      width: 75px;
+    }
+
+    &.rating-4 {
+      width: 100px;
+    }
+
+    &.rating-5 {
+      width: 125px;
+    }
+  }
+}
+
+.content.user-profile p:not(:last-child) {
+  margin-bottom: 5px;
+}
