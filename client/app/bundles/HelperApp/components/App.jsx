@@ -25,7 +25,8 @@ export default class App extends React.Component {
   getEvents() {
     $.ajax({
       url: "/events",
-      dataType: "json"
+      dataType: "json",
+      cache: false,
     }).done((data) => {
       this.setState({ events: data });
     });
