@@ -6,11 +6,12 @@ class Event < ApplicationRecord
   validates :description, presence: true
 
   after_validation :geocode
-  after_validation :geocode
 
   before_save :geocode_endpoints
 
   after_create_commit { ActionCable.server.broadcast 'events', {message: self.to_json}}
+
+  has_and_belongs_to_many :users
 
   has_attached_file :photo, :styles => { :medium =>     "300x300#", :thumb => "200x200#" }
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
