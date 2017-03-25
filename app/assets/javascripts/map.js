@@ -1,7 +1,8 @@
 $(function() {
   $.ajax({
     url: "/events",
-    dataType: "json"
+    dataType: "json",
+    cache: false
   }).done(function(data) {
     if (window.google) {
       initMap(data);
@@ -14,7 +15,8 @@ $(function() {
 
     $.ajax({
       url: "/events/" + eventId,
-      dataType: "json"
+      dataType: "json",
+      cache: false
     }).done(function(data) {
       if (window.google) {
         initSingleMap(data);
