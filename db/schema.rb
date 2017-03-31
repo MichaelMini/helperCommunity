@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170303013659) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.float    "lat"
@@ -31,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.string   "end_address"
     t.float    "end_lat"
     t.float    "end_lng"
-    t.index ["user_id"], name: "index_events_on_user_id"
+    t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
   create_table "events_users", id: false, force: :cascade do |t|
@@ -44,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_helper_lists_on_event_id"
-    t.index ["user_id"], name: "index_helper_lists_on_user_id"
+    t.index ["event_id"], name: "index_helper_lists_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_helper_lists_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -57,8 +60,8 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_locations_on_event_id"
-    t.index ["user_id"], name: "index_locations_on_user_id"
+    t.index ["event_id"], name: "index_locations_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -67,8 +70,8 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room_id"], name: "index_messages_on_room_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["room_id"], name: "index_messages_on_room_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -79,9 +82,9 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "reviewer_id"
-    t.index ["event_id"], name: "index_reviews_on_event_id"
-    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["event_id"], name: "index_reviews_on_event_id", using: :btree
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -89,7 +92,7 @@ ActiveRecord::Schema.define(version: 20170303013659) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_rooms_on_event_id"
+    t.index ["event_id"], name: "index_rooms_on_event_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
