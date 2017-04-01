@@ -1,9 +1,9 @@
 <article class="content user-profile">
   <section class="user-section container">
     <div class="columns">
-      <div class="column is-3">
+      <!-- <div class="column is-3"> -->
         <%#= image_tag @user.photo.url(:thumb) %>
-      </div>
+      <!-- </div> -->
       <div class="column is-8">
         <h2 class="user-name"><%= @user.name %></h2>
         <p class="karma-member">Karma Member Since: <%= @user.created_at.strftime("%d %b. %Y") %></p>
