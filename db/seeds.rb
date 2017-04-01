@@ -41,8 +41,7 @@ u2 = User.create!({
   email: 'irina@gmail.com',
   password_digest: '123456',
   photo: open_asset('Irina.jpg'),
-  description: 'Hey everyone, I am excited to connect with my city. I have lived in Vancouver for four years and
-  love it!',
+  description: 'Hey everyone, I am excited to connect with my city. I have lived in Vancouver for four years and love it!',
   DoB: 22.years.from_now,
   phone_number: '+16046796423'
 })

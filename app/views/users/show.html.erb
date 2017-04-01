@@ -43,7 +43,7 @@
           <% else %>
             <% event.users.each do |x| %>
               <div class="each-user">
-                <%= image_tag x.photo.url(:thumb), class: "image is-48x48" %>
+                <%#= image_tag x.photo.url(:thumb), class: "image is-48x48" %>
                 <%= link_to x.name, user_path(x.id) %>
               </div>
             <% end %>
