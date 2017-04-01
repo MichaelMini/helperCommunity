@@ -17,7 +17,6 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :phone_number, presence: true
 
   def accepted_event?(event_id)
     accepted_events.where(id: event_id).any?
