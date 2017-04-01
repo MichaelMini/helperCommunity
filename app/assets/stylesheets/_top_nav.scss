@@ -65,6 +65,10 @@
   margin: 20px 15px 0;
 }
 
+.form-group:nth-child(6) {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   .nav-menu {
     display: flex;
